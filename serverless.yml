@@ -1,0 +1,42 @@
+org: luchorene97
+app: http-api-python
+service: http-api-python
+frameworkVersion: '3'
+
+custom:
+  serverless-offline:
+    reloadHandler: true
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.8
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+  create_users:
+    handler: src/handlers/user/create.create_user
+    events:
+      - httpApi:
+          path: /user/
+          method: post
+  get_user:
+    handler: src/handlers/user/get_by_id.get_user
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
+  get_users:
+    handler: src/handlers/user/get_all.get_users
+    events:
+      - httpApi:
+          path: /user/
+          method: get
