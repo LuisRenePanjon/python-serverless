@@ -22,5 +22,5 @@ def get_user(event, context):
     except:
         return {
             "statusCode": 404,
-            "body": "User not found"
+            "body": json.dumps({"message": f"User not found"})
         }
