@@ -20,3 +20,6 @@ var/
 .serverless
 
 venv/
+
+#editors
+.idea
